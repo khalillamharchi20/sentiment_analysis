@@ -6,7 +6,6 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 word2num=joblib.load('word2idx.pkl')
 classes=joblib.load('class.pkl')
 model=load_model('sentiment_analysis.h5')
-char="They have truly learned nothing The Science creating another Wuhan Institute of Virology incident."
 def char_edit_tosequence(string):
     list=[]
     list2=[]
@@ -60,5 +59,3 @@ def sentiment_analysis(tweet):
     for k in range(len(tweet)):
         tweet[k]=data[tweet[k]]
     return tweet
-print(sentiment_analysis(char))
-
