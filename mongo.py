@@ -17,8 +17,12 @@ def find(sentiment):
         if index==1:
             list.append(tweet['tweet'])
     return list
-def add(json):
-    collection.insert_many(json)
+def add(tweet):
+    json={
+        'tweet':tweet,
+        'sentiment':""
+    }
+    collection.insert_one(json)
     return 0
 def add_sentiment():
     tweets = collection.find({})

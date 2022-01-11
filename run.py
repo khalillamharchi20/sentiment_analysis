@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
+from mongo import add
 html_text=requests.get('https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords=python&txtLocation=').text
 soup=BeautifulSoup(html_text,'lxml')
 
@@ -14,5 +16,12 @@ for post in post_listings:
         job_skils=" ".join(job_skils.split())
         dict['job skills']=job_skils
         final_postings.append(dict)
-print(final_postings)   
+print(final_postings)
+dataframe=pd.read_csv('validation.csv',delimiter=';')
+dataframe=dataframe['Tweet']
+for k in dataframe:
+    add(k)
+
+
+
 

@@ -53,7 +53,7 @@ def sentiment_analysis(tweet):
           9:'Official report',
           10:'joking'}
     if tweet==10:
-        return 'joking'
+        return ['joking']
     else:
         tweet=int_to_list(tweet)
     for k in range(len(tweet)):
