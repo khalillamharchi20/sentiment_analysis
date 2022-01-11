@@ -3,7 +3,8 @@ import numpy as np
 import seaborn as sn
 import pandas as pd
 import matplotlib.pyplot as plt
-from mongo import find,add_sentiment
+from mongo import find,add_sentiment,add_all
+from model import sentiment_analysis
 fig, ax = plt.subplots()
 fig.set_size_inches(11.7, 8.27)
 st.title("twitter data vizualization")
@@ -12,8 +13,8 @@ sidebar_options = st.sidebar.selectbox(
     'options',
     (
             'overview',
-        'charts'
-
+        'charts',
+        'predicting'
     )
 )
 
@@ -94,3 +95,13 @@ if sidebar_options=="charts":
     dataframe2=pd.DataFrame(dataframe1)
     ax=sn.countplot(x='sentiment',data=dataframe2)
     st.pyplot(fig)
+if sidebar_options=="predicting":
+    st.header("test some tweets")
+    tweet = st.text_input('write your tweet here')
+    train = st.button('predict sentiment')
+    sen=sentiment_analysis(tweet)
+    if train :
+        for k in range(0,len(sen)):
+            st.markdown('-'+str(k)+" "+str(sen[k]))
+    add_all(tweet,sen)
+

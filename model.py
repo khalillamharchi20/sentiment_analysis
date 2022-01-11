@@ -10,8 +10,9 @@ def char_edit_tosequence(string):
     list=[]
     list2=[]
     string=string.lower()
-    if string[-1]==".":
-        string=string[:-1]
+    if len(string)>0:
+        if string[-1]=="." :
+            string=string[:-1]
     for k in string.split(' '):
         try:
             list.append(int(word2num[k]))

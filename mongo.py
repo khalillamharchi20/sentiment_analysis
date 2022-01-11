@@ -34,3 +34,10 @@ def add_sentiment():
         else:
             print(tweet['sentiment'])
     return 0
+def add_all(tweet,sentiment):
+    json={
+        'tweet':tweet,
+        'sentiment':sentiment
+    }
+    collection.insert_one(json)
+    return 0
